@@ -11,21 +11,21 @@ So That:  I can ensure the information reflects newest prices
 print(us)
 
 # need to change everything below
+# change_in_price: positive means new_price = original price + change_in_price,
+#                  negative means new_price = original price - change_in_price
 
-def show_comment_bug_feature( cid ):
+def show_changed_prices( hotel_id, provider_id, change_in_price ):
 
-    cols = 'c.cid c.date c.comment i.iid i.initial_date i.product i.status i.priority tag'
+    cols = ''
 
     tmpl =  f'''
-SELECT c.cid, c.date, c.comment, i.iid, i.initial_date, i.product, i.status, i.priority,
-       case when f.fid is NULL then 'bug' else 'feature' end as tag
-  FROM Comments as c
-       LEFT JOIN Bugs as b ON c.iid = b.bid
-       LEFT JOIN Features as f on c.iid = f.fid
-       JOIN Issues as i on c.iid = i.iid
- WHERE c.cid = %s
+SELECT 
+  FROM Provisions as p
+       JOIN Hotel_Provider as hp ON p.provider_id = hp.provider_id
+       JOIN Hotel as h on h.hotel_id = p.hotel_id
+ WHERE p.hotel_id = %s and p.provider_id = %s
 '''
-    cmd = cur.mogrify(tmpl, (cid,))
+    cmd = cur.mogrify(tmpl, (hotel_name, change_in_price))
     print_cmd(cmd)
     cur.execute(cmd)
     rows = cur.fetchall()
@@ -33,3 +33,10 @@ SELECT c.cid, c.date, c.comment, i.iid, i.initial_date, i.product, i.status, i.p
     show_table( rows, cols) 
 
 show_comment_bug_feature( 5 )
+
+# show enough to demonstrate that you've made the changes
+# need the join to make it complex, so use hotel_name
+# prices of rooms before
+# prices of rooms after
+# cheapest nightly rate before
+# cheapest nightly rate after

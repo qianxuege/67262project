@@ -4,10 +4,10 @@ room_number, hotel_id, room_capacity, nightly_rate, available
 106, 1, 2, 423, TRUE
 1202, 2, 2, 530, FALSE
 1205, 2, 2, 510, TRUE
+210, 3, 2, 400, TRUE
+213, 3, 4, 600, FALSE
+215, 3, 2, 410, TRUE
 305, 4, 2, 450, TRUE
 307, 4, 3, 560, TRUE
 508, 5, 2, 435, FALSE
 510, 5, 3, 580, TRUE
-210, 3, 2, 400, TRUE
-213, 3, 4, 600, FALSE
-215, 3, 2, 410, TRUE
