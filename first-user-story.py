@@ -1,14 +1,16 @@
 from common import *
 
 us='''
-* Simple US: Show the bug or feature associated with a comment
+* Complex US: Maintain Consistency (US6)
 
-   As a:  Developer
- I want:  To see the details of a bug/feature associated with a comment
-So That:  I can better understand the issue
+   As a:  Hotel Provider
+ I want:  To lower prices of all rooms of a hotel with a specific provider
+So That:  I can ensure the information reflects newest prices
 '''
 
 print(us)
+
+# need to change everything below
 
 def show_comment_bug_feature( cid ):
 

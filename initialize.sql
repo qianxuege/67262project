@@ -11,5 +11,8 @@ CREATE TYPE Room_Type AS ENUM('customer', 'developer', 'manager');
 
 -- load the data
 
+\copy Hotel_Provider(provider_id, provider_name) FROM data/hotel_provider.csv csv header;
 \copy Hotel(hotel_id, location, pool, rating, cheapest_nightly_rate) FROM data/hotel.csv csv header;
+\copy Room(room_number, hotel_id, room_type, nightly_rate, available) FROM data/room.csv csv header;
+\copy Provision(hotel_id, provider_id) FROM data/provision.csv csv header;
 
