@@ -4,7 +4,7 @@ us='''
 * Complex US: Maintain Consistency (US6)
 
    As a:  Kayak’s website Manager
- I want:  Lower prices of all rooms in the hotel given a specific hotel name
+ I want:  To lower prices of all rooms in the hotel given a specific hotel name
 So That:  I can ensure the information reflects newest prices
 '''
 
