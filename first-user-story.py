@@ -3,8 +3,8 @@ from common import *
 us='''
 * Complex US: Maintain Consistency (US6)
 
-   As a:  Hotel Provider
- I want:  To lower prices of all rooms of a hotel with a specific provider
+   As a:  Kayak’s website Manager
+ I want:  Lower prices of all rooms in the hotel given a specific hotel name
 So That:  I can ensure the information reflects newest prices
 '''
 
@@ -13,26 +13,28 @@ print(us)
 # need to change everything below
 # change_in_price: positive means new_price = original price + change_in_price,
 #                  negative means new_price = original price - change_in_price
-
-def show_changed_prices( hotel_id, provider_id, change_in_price ):
+#name = user input hotel name
+def show_changed_prices( hotel_name, change_in_price):
 
     cols = ''
 
     tmpl =  f'''
-SELECT 
-  FROM Provisions as p
-       JOIN Hotel_Provider as hp ON p.provider_id = hp.provider_id
-       JOIN Hotel as h on h.hotel_id = p.hotel_id
- WHERE p.hotel_id = %s and p.provider_id = %s
+    UPDATE Room 
+           SET nightly_rate = nightly_rate + %s
+     WHERE room_number IN 
+      (SELECT r.room_number
+          FROM Room as r
+          JOIN Hotel as h on h.hotel_id = r.hotel_id
+        WHERE h.hotel_name = %s)
 '''
-    cmd = cur.mogrify(tmpl, (hotel_name, change_in_price))
+    cmd = cur.mogrify(tmpl, (change_in_price, hotel_name))
     print_cmd(cmd)
     cur.execute(cmd)
     rows = cur.fetchall()
     pp(rows)
     show_table( rows, cols) 
 
-show_comment_bug_feature( 5 )
+show_changed_prices("Kinzie Hotel", 100)
 
 # show enough to demonstrate that you've made the changes
 # need the join to make it complex, so use hotel_name
