@@ -54,6 +54,7 @@ def show_changed_prices(hotel_name, change_in_price):
     conn.commit()
     
     # Display prices after the change
+    print(f"Applied change: {change_in_price}")
     print(f"Prices after change for hotel: {hotel_name}")
     cur.execute(before_query, (hotel_name,))
     after_prices = cur.fetchall()
@@ -66,7 +67,7 @@ def show_changed_prices(hotel_name, change_in_price):
         print(f"Cheapest rate after: {after_prices[0][1]}")
 
 # Example usage
-show_changed_prices('Kinzie Hotel', 100)
+show_changed_prices('Kinzie Hotel', -50)
 
 
 # show enough to demonstrate that you've made the changes
