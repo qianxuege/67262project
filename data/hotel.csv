@@ -1,1 +1,2 @@
-hotel_id, location, pool, rating, cheapest_nightly_rate
+hotel_id, hotel_name, location, pool, rating, cheapest_nightly_rate
+1, "Walker Hotel Greenwich Village", New York, false, 8.2, 398

@@ -1,1 +1,7 @@
 provider_id, provider_name
+1, "Expedia"
+2, "Booking.com"
+3, "Hotels.com"
+4, "Priceline"
+5, "Pricetravel"
+6, "Super.com"

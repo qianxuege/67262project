@@ -1,90 +1,63 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-10-22 23:29:39.139
+-- Last modification date: 2024-11-23 03:08:19.216
 
 -- tables
--- Table: Bugs
-CREATE TABLE Bugs (
-    bid int  NOT NULL,
-    severity Severity_Type  NOT NULL,
-    CONSTRAINT Bugs_pk PRIMARY KEY (bid)
+-- Table: Hotel
+CREATE TABLE Hotel (
+    hotel_id int  NOT NULL,
+    hotel_name text  NOT NULL,
+    location text  NOT NULL,
+    pool boolean  NOT NULL,
+    rating text  NOT NULL,
+    cheapest_nightly_rate text  NOT NULL,
+    CONSTRAINT Hotel_pk PRIMARY KEY (hotel_id)
 );
 
--- Table: Comments
-CREATE TABLE Comments (
-    cid int  NOT NULL,
-    date timestamp  NOT NULL,
-    comment text  NOT NULL,
-    iid int  NOT NULL,
-    uid int  NOT NULL,
-    CONSTRAINT Comments_pk PRIMARY KEY (cid)
+-- Table: Hotel_Provider
+CREATE TABLE Hotel_Provider (
+    provider_id int  NOT NULL,
+    provider_name text  NOT NULL,
+    CONSTRAINT Hotel_Provider_pk PRIMARY KEY (provider_id)
 );
 
--- Table: Features
-CREATE TABLE Features (
-    fid int  NOT NULL,
-    votes int  NOT NULL,
-    CONSTRAINT Features_pk PRIMARY KEY (fid)
+-- Table: Provision
+CREATE TABLE Provision (
+    provider_id int  NOT NULL,
+    hotel_id int  NOT NULL,
+    CONSTRAINT Provision_pk PRIMARY KEY (provider_id,hotel_id)
 );
 
--- Table: Issues
-CREATE TABLE Issues (
-    iid int  NOT NULL,
-    initial_date timestamp  NOT NULL,
-    product text  NOT NULL,
-    status Status_Type  NOT NULL,
-    priority int  NOT NULL,
-    uid int  NOT NULL,
-    message text  NOT NULL,
-    CONSTRAINT Issues_pk PRIMARY KEY (iid)
-);
-
--- Table: Users
-CREATE TABLE Users (
-    uid int  NOT NULL,
-    name text  NOT NULL,
-    role User_Type  NOT NULL,
-    CONSTRAINT Users_pk PRIMARY KEY (uid)
+-- Table: Room
+CREATE TABLE Room (
+    room_number int  NOT NULL,
+    room_capacity int  NOT NULL,
+    nightly_rate int  NOT NULL,
+    available boolean  NOT NULL,
+    hotel_id int  NOT NULL,
+    CONSTRAINT Room_pk PRIMARY KEY (room_number,hotel_id)
 );
 
 -- foreign keys
--- Reference: Bugs_Issues (table: Bugs)
-ALTER TABLE Bugs ADD CONSTRAINT Bugs_Issues
-    FOREIGN KEY (bid)
-    REFERENCES Issues (iid)  
-    ON UPDATE RESTRICT
+-- Reference: Provision_Hotel (table: Provision)
+ALTER TABLE Provision ADD CONSTRAINT Provision_Hotel
+    FOREIGN KEY (hotel_id)
+    REFERENCES Hotel (hotel_id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
--- Reference: Comments_Issues (table: Comments)
-ALTER TABLE Comments ADD CONSTRAINT Comments_Issues
-    FOREIGN KEY (iid)
-    REFERENCES Issues (iid)  
-    ON UPDATE RESTRICT
+-- Reference: Provision_Hotel_Provider (table: Provision)
+ALTER TABLE Provision ADD CONSTRAINT Provision_Hotel_Provider
+    FOREIGN KEY (provider_id)
+    REFERENCES Hotel_Provider (provider_id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
--- Reference: Comments_Users (table: Comments)
-ALTER TABLE Comments ADD CONSTRAINT Comments_Users
-    FOREIGN KEY (uid)
-    REFERENCES Users (uid)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: Features_Issues (table: Features)
-ALTER TABLE Features ADD CONSTRAINT Features_Issues
-    FOREIGN KEY (fid)
-    REFERENCES Issues (iid)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: Issues_Users (table: Issues)
-ALTER TABLE Issues ADD CONSTRAINT Issues_Users
-    FOREIGN KEY (uid)
-    REFERENCES Users (uid)  
+-- Reference: Room_Hotel (table: Room)
+ALTER TABLE Room ADD CONSTRAINT Room_Hotel
+    FOREIGN KEY (hotel_id)
+    REFERENCES Hotel (hotel_id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
