@@ -1,6 +1,6 @@
 from common import *
 
-def show_table( tablename ):
+def select_table( tablename ):
         tmpl =  f'''
     SELECT *
     FROM {tablename}
@@ -10,11 +10,11 @@ def show_table( tablename ):
         cur.execute(cmd)
         rows = cur.fetchall()
         pp(rows)
-        show_table( rows, cols) 
+        show_table( rows) 
 
 def show_all():
     tables = ["Hotel_Provider", "Hotel", "Provision", "Room"]
-    for table in tables:
-        show_table(table)
+    for i in range(len(tables)):
+        select_table(tables[i])
 
 show_all()
