@@ -14,19 +14,21 @@ print(us)
 # change_in_price: positive means new_price = original price + change_in_price,
 #                  negative means new_price = original price - change_in_price
 #name = user input hotel name
-def show_table(rows, cols):
-    if isinstance(cols, str):
-        # Ensure cols is a list if it's a string
-        cols = cols.split()
-    elif not isinstance(cols, list):
-        raise ValueError("`cols` must be a string or a list")
-    
-    # Display the table (Assume this is a placeholder for an actual implementation)
-    print(f"{cols}")
-    for row in rows:
-        print(f"{row}")
+
 
 def show_changed_prices(hotel_name, change_in_price):
+    # Display Hotel's cheapest nightly rate before update
+    print("before update")
+    hotel_query = '''
+      SELECT h.hotel_name, h.cheapest_nightly_rate
+          FROM Hotel AS h
+         WHERE LOWER(TRIM(h.hotel_name)) = LOWER(TRIM(%s))
+    '''
+    cur.execute(hotel_query, (hotel_name,))
+    rows = cur.fetchall()
+    # pp(rows)
+    show_table( rows, cols = 'hotel_name cheapest_nightly_rate' )
+  
     # Display prices before the change
     print(f"Prices before change for hotel: {hotel_name}")
     before_query = '''
@@ -38,7 +40,9 @@ def show_changed_prices(hotel_name, change_in_price):
     '''
     cur.execute(before_query, (hotel_name,))
     before_prices = cur.fetchall()
-    show_table(before_prices, ['Room Number', 'Nightly Rate'])
+    # pp(before_prices)
+    show_table( before_prices, cols = 'Room_Number Nightly_Rate' )
+
     
     # Perform the update
     update_query = '''
@@ -58,13 +62,27 @@ def show_changed_prices(hotel_name, change_in_price):
     print(f"Prices after change for hotel: {hotel_name}")
     cur.execute(before_query, (hotel_name,))
     after_prices = cur.fetchall()
-    show_table(after_prices, ['Room Number', 'Nightly Rate'])
+    # pp(after_prices)
+    show_table( after_prices, cols = 'Room_Number Nightly_Rate' )
+    
+    # Display Hotel's cheapest nightly rate after update
+    print("after update")
+    hotel_query = '''
+      SELECT h.hotel_name, h.cheapest_nightly_rate
+          FROM Hotel AS h
+         WHERE LOWER(TRIM(h.hotel_name)) = LOWER(TRIM(%s))
+    '''
+    cur.execute(hotel_query, (hotel_name,))
+    rows = cur.fetchall()
+    # pp(rows)
+    show_table( rows, cols = 'hotel_name cheapest_nightly_rate' )
     
     # Display the cheapest nightly rates before and after
     if before_prices:
         print(f"Cheapest rate before: {before_prices[0][1]}")
     if after_prices:
         print(f"Cheapest rate after: {after_prices[0][1]}")
+  
 
 # Example usage
 show_changed_prices('Kinzie Hotel', -50)

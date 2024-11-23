@@ -35,7 +35,7 @@ BEGIN
             SET cheapest_nightly_rate = new_min_rate
             WHERE hotel_id = new.hotel_id;
     END IF;
-    
+
     return null;
     
     
