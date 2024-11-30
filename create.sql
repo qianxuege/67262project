@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-11-30 16:50:37.788
+-- Last modification date: 2024-11-30 16:56:48.022
 
 -- tables
 -- Table: Aircraft
@@ -15,14 +15,14 @@ CREATE TABLE Aircraft (
 CREATE TABLE Flight (
     flight_id int  NOT NULL,
     destination text  NOT NULL,
-    price int  NOT NULL,
+    flight_price int  NOT NULL,
     departure_time timestamp  NOT NULL,
     arrival_time timestamp  NOT NULL,
     occupancy int  NOT NULL,
-    Aircraft_model_type text  NOT NULL,
-    Aircraft_date_made timestamp  NOT NULL,
-    Aircraft_seating_capacity int  NOT NULL,
-    Aircraft_wifi boolean  NOT NULL,
+    model_type text  NOT NULL,
+    date_made timestamp  NOT NULL,
+    seating_capacity int  NOT NULL,
+    wifi boolean  NOT NULL,
     CONSTRAINT Flight_pk PRIMARY KEY (flight_id)
 );
 
@@ -60,22 +60,22 @@ CREATE TABLE Room (
     hotel_id int  NOT NULL,
     room_capacity int  NOT NULL,
     nightly_rate int  NOT NULL,
-    available boolean  NOT NULL,
+    room_available boolean  NOT NULL,
     CONSTRAINT Room_pk PRIMARY KEY (room_number,hotel_id)
 );
 
 -- Table: Selected_Flight
 CREATE TABLE Selected_Flight (
-    Traveler_user_id int  NOT NULL,
-    Flight_flight_id int  NOT NULL,
-    CONSTRAINT Selected_Flight_pk PRIMARY KEY (Traveler_user_id,Flight_flight_id)
+    user_id int  NOT NULL,
+    flight_id int  NOT NULL,
+    CONSTRAINT Selected_Flight_pk PRIMARY KEY (user_id,flight_id)
 );
 
 -- Table: Selected_Hotel
 CREATE TABLE Selected_Hotel (
-    Traveler_user_id int  NOT NULL,
-    Hotel_hotel_id int  NOT NULL,
-    CONSTRAINT Selected_Hotel_pk PRIMARY KEY (Traveler_user_id,Hotel_hotel_id)
+    user_id int  NOT NULL,
+    hotel_id int  NOT NULL,
+    CONSTRAINT Selected_Hotel_pk PRIMARY KEY (user_id,hotel_id)
 );
 
 -- Table: Traveler
@@ -87,7 +87,7 @@ CREATE TABLE Traveler (
 -- foreign keys
 -- Reference: Flight_Aircraft (table: Flight)
 ALTER TABLE Flight ADD CONSTRAINT Flight_Aircraft
-    FOREIGN KEY (Aircraft_model_type, Aircraft_date_made, Aircraft_seating_capacity, Aircraft_wifi)
+    FOREIGN KEY (model_type, date_made, seating_capacity, wifi)
     REFERENCES Aircraft (model_type, date_made, seating_capacity, wifi)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
@@ -119,7 +119,7 @@ ALTER TABLE Room ADD CONSTRAINT Room_Hotel
 
 -- Reference: Selected_Flight_Flight (table: Selected_Flight)
 ALTER TABLE Selected_Flight ADD CONSTRAINT Selected_Flight_Flight
-    FOREIGN KEY (Flight_flight_id)
+    FOREIGN KEY (flight_id)
     REFERENCES Flight (flight_id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
@@ -127,7 +127,7 @@ ALTER TABLE Selected_Flight ADD CONSTRAINT Selected_Flight_Flight
 
 -- Reference: Selected_Flight_Traveler (table: Selected_Flight)
 ALTER TABLE Selected_Flight ADD CONSTRAINT Selected_Flight_Traveler
-    FOREIGN KEY (Traveler_user_id)
+    FOREIGN KEY (user_id)
     REFERENCES Traveler (user_id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
@@ -135,7 +135,7 @@ ALTER TABLE Selected_Flight ADD CONSTRAINT Selected_Flight_Traveler
 
 -- Reference: Selected_Hotel_Hotel (table: Selected_Hotel)
 ALTER TABLE Selected_Hotel ADD CONSTRAINT Selected_Hotel_Hotel
-    FOREIGN KEY (Hotel_hotel_id)
+    FOREIGN KEY (hotel_id)
     REFERENCES Hotel (hotel_id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
@@ -143,7 +143,7 @@ ALTER TABLE Selected_Hotel ADD CONSTRAINT Selected_Hotel_Hotel
 
 -- Reference: Selected_Hotel_Traveler (table: Selected_Hotel)
 ALTER TABLE Selected_Hotel ADD CONSTRAINT Selected_Hotel_Traveler
-    FOREIGN KEY (Traveler_user_id)
+    FOREIGN KEY (user_id)
     REFERENCES Traveler (user_id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
