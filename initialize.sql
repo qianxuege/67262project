@@ -12,9 +12,11 @@ CREATE database project;
 \copy Flight(flight_id, destination, flight_price, departure_time, arrival_time, occupancy, model_type, date_made, seating_capacity, wifi) FROM data/flight.csv csv header;
 \copy Traveler(user_id) FROM data/traveler.csv csv header;
 \copy Guest_Traveler(user_id, login_ip_address, login_timestamp) FROM data/guest_traveler.csv csv header;
--- \copy Hotel() FROM data/room.csv csv header;
+\copy Registered_Traveler(user_id, name, email) FROM data/registered_traveler.csv csv header;
 \copy Hotel(hotel_id, hotel_name, location, pool, rating, cheapest_nightly_rate, total_rooms) FROM data/hotel.csv csv header;
 \copy Room(room_number, hotel_id, room_capacity, nightly_rate, room_available) FROM data/room.csv csv header;
+\copy Selected_Flight(user_id, flight_id) FROM data/selected_flight.csv csv header;
+\copy Selected_Hotel(user_id, hotel_id) FROM data/selected_hotel.csv csv header;
 
 -- trigger 
 -- DROP FUNCTION IF EXISTS fn_update_cheapest_nightly_rate() cascade;
