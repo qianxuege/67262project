@@ -33,10 +33,10 @@ def show_changed_deparr_times(flight_id, new_dep, new_arr):
     
     #Display departure and arrival times after the change
     print(f"New departure: {new_dep}")
-    print(f"New arival: {new_arr}")
+    print(f"New arrival: {new_arr}")
     cur.execute(flight_query, (flight_id,))
     after_deparr = cur.fetchall()
     show_table(after_deparr, cols = 'Flight_id Destination Departure_Time Arrival_Time')
     
 #example usage
-show_changed_deparr_times(1, '2024-12-07 07:50:00','2024-12-08 07:50:00')
+show_changed_deparr_times(1, '2024-12-07 12:45:37','2024-12-07 09:12:48')
