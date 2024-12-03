@@ -1,5 +1,5 @@
 flight_id, destination, flight_price, departure_time, arrival_time, occupancy, model_type, date_made, seating_capacity, wifi
-1, Chicago, 663, 2024-12-06 07:10:00, 2024-12-06 07:50:00, 150, "Boeing 737-800", 2015-12-12 12:00:00, 160, True
+1, Chicago, 663, 2024-12-06 07:10:00, 2024-12-06 07:50:00, 150, Boeing 737-800, 2015-12-12 12:00:00, 160, True
 2, Fort Lauderdale, 102, 2024-12-13 19:08:00, 2024-12-13 21:56:00, 100, "Spirit Airlines NK638", 2014-11-24 12:00:00, 180, False
 3, Italy, 301, 2025-03-03 12:00:00, 2025-03-04 9:00:00, 90, "Boeing 737-900", 2019-03-30 01:00:00, 220, True
 4, Italy, 990, 2025-03-05 01:00:00, 2025-03-07 00:12:10, 30, "Boeing 747-800", 2017-04-23 07:00:00, 250, True

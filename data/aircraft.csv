@@ -1,8 +1,8 @@
 model_type, date_made, seating_capacity, wifi
-"Boeing 737-800", 2015-12-12 12:00:00, 160, True
-"Spirit Airlines NK638", 2014-11-24 12:00:00, 180, False
-"Boeing 737-900", 2019-03-30 01:00:00, 220, True
-"Boeing 747-800", 2017-04-23 07:00:00, 250, True
-"Boeing 747-100", 2013-07-13 01:00:00, 210, True
-"Allegiant Air 1123", 2017-06-12 09:00:00, 175, True
-"Spirit Airlines 1675", 2016-12-02 03:13:00, 120, False
+" Boeing 737-800", 2015-12-12 12:00:00, 160, True
+" Spirit Airlines NK638", 2014-11-24 12:00:00, 180, False
+" Boeing 737-900", 2019-03-30 01:00:00, 220, True
+" Boeing 747-800", 2017-04-23 07:00:00, 250, True
+" Boeing 747-100", 2013-07-13 01:00:00, 210, True
+" Allegiant Air 1123", 2017-06-12 09:00:00, 175, True
+" Spirit Airlines 1675", 2016-12-02 03:13:00, 120, False
