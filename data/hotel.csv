@@ -1,6 +1,6 @@
-hotel_id, hotel_name, location, pool, rating, cheapest_nightly_rate
-1, "Walker Hotel Greenwich Village", New York, FALSE, 8.2, 398
-2, "Delano Las Vegas", Las Vegas, TRUE, 8.3, 600
-3, "Central Loop Hotel", Chicago, FALSE, 7.9, 397
-4, "Kinzie Hotel", Chicago, FALSE, 8.6, 460
-5, "Bellagio", Las Vegas, TRUE, 8.4, 503
+hotel_id, hotel_name, location, pool, rating, cheapest_nightly_rate, total_rooms
+1, Walker Hotel Greenwich Village, New York, FALSE, 8.2, 398, 6
+2, Delano Las Vegas, Las Vegas, TRUE, 8.3, 600, 6
+3, Central Loop Hotel, Chicago, FALSE, 7.9, 397, 6
+4, Kinzie Hotel, Chicago, FALSE, 8.6, 460, 6
+5, Bellagio, Las Vegas, TRUE, 8.4, 503, 6
