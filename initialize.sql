@@ -9,7 +9,7 @@ CREATE database project;
 
 -- load the data
 \copy Aircraft(model_type, date_made, seating_capacity, wifi) FROM data/aircraft.csv csv header;
--- \copy Flight(flight_id, destination, flight_price, departure_time, arrival_time, occupancy) FROM data/flight.csv csv header;
+\copy Flight(flight_id, destination, flight_price, departure_time, arrival_time, occupancy, model_type, date_made, seating_capacity, wifi) FROM data/flight.csv csv header;
 \copy Traveler(user_id) FROM data/traveler.csv csv header;
 \copy Guest_Traveler(user_id, login_ip_address, login_timestamp) FROM data/guest_traveler.csv csv header;
 -- \copy Hotel() FROM data/room.csv csv header;
