@@ -55,6 +55,3 @@ CREATE TRIGGER tr_update_cheapest_nightly_rate
     EXECUTE FUNCTION fn_update_cheapest_nightly_rate();
 
 
-
-
-
