@@ -27,9 +27,9 @@ room_number, hotel_id, room_capacity, nightly_rate, available
 404, 4, 3, 500, TRUE
 405, 4, 4, 600, FALSE
 
-503, 5, 2, 503, FALSE
-503, 5, 2, 503, TRUE
-503, 5, 2, 510, FALSE
+500, 5, 2, 503, FALSE
+501, 5, 2, 503, TRUE
+502, 5, 2, 510, FALSE
 503, 5, 2, 520, FALSE
-505, 5, 4, 660, TRUE
+504, 5, 4, 660, TRUE
 505, 5, 4, 680, TRUE
