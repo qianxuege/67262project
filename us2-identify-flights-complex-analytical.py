@@ -1,7 +1,7 @@
 from common import *
 
 us='''
-* Complex US: Identify Flights (US2)
+* Simple US: Identify Flights (US2)
 
    As a:  Airline
  I want:  To find the flights with low occupancy (ex <50 passengers) 
