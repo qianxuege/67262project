@@ -12,9 +12,13 @@ print(us)
 
 # This function gets the flights with departure time between start and end,
 # and finds the nday period with the lowest average flight_price.
+# The window function uses the nday parameter.
 def show_cheapest_period(start, end, nday, destination):
     assert(nday>0)
     res_col = 'departure_time avg_three_day_price'
+    # Uses CTE to get the flights within the start and end interval 
+    # that goes to the destination. Note that the rolling average only includes 
+    # flights that are nday from the departure_time.
     query = '''
       WITH filtered_flights AS (
         SELECT f.flight_id, f.destination, f.flight_price, 
@@ -51,7 +55,7 @@ def show_cheapest_period(start, end, nday, destination):
                                          FROM rolling_avg as r2)
        ORDER BY r1.departure_time;
     '''
-    cur.execute(query, (destination, start, end, nday-1, nday-1, nday))
+    cur.execute(query, (destination, start, end, nday, nday, nday))
     rows = cur.fetchall()
     show_table( rows, cols = res_col )
     print(f"It is cheapest to travel to {destination} in the {nday}-day period starting on the departure_time")
