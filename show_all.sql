@@ -1,5 +1,5 @@
 \c project
-
+\pset pager off
 
 \echo 'Traveler'
 SELECT * 
