@@ -3,18 +3,16 @@ from common import *
 us='''
 * Complex US: Maintain Consistency (US6)
 
-   As a:  Kayak’s website Manager
+   As a:  Hotel Manager
  I want:  To lower prices of all rooms in the hotel given a specific hotel name
 So That:  I can ensure the information reflects newest prices
 '''
 
 print(us)
 
-# need to change everything below
 # change_in_price: positive means new_price = original price + change_in_price,
 #                  negative means new_price = original price - change_in_price
 #name = user input hotel name
-
 
 def show_changed_prices(hotel_name, change_in_price):
     # Display Hotel's cheapest nightly rate before update
@@ -26,7 +24,6 @@ def show_changed_prices(hotel_name, change_in_price):
     '''
     cur.execute(hotel_query, (hotel_name,))
     rows = cur.fetchall()
-    # pp(rows)
     show_table( rows, cols = 'hotel_name cheapest_nightly_rate' )
   
     # Display prices before the change
@@ -40,7 +37,6 @@ def show_changed_prices(hotel_name, change_in_price):
     '''
     cur.execute(before_query, (hotel_name,))
     before_prices = cur.fetchall()
-    # pp(before_prices)
     show_table( before_prices, cols = 'Room_Number Nightly_Rate' )
 
     
@@ -62,7 +58,6 @@ def show_changed_prices(hotel_name, change_in_price):
     print(f"Prices after change for hotel: {hotel_name}")
     cur.execute(before_query, (hotel_name,))
     after_prices = cur.fetchall()
-    # pp(after_prices)
     show_table( after_prices, cols = 'Room_Number Nightly_Rate' )
     
     # Display Hotel's cheapest nightly rate after update
@@ -74,7 +69,6 @@ def show_changed_prices(hotel_name, change_in_price):
     '''
     cur.execute(hotel_query, (hotel_name,))
     rows = cur.fetchall()
-    # pp(rows)
     show_table( rows, cols = 'hotel_name cheapest_nightly_rate' )
     
     # Display the cheapest nightly rates before and after
@@ -87,10 +81,3 @@ def show_changed_prices(hotel_name, change_in_price):
 # Example usage
 show_changed_prices('Kinzie Hotel', -50)
 
-
-# show enough to demonstrate that you've made the changes
-# need the join to make it complex, so use hotel_name
-# prices of rooms before
-# prices of rooms after
-# cheapest nightly rate before
-# cheapest nightly rate after
